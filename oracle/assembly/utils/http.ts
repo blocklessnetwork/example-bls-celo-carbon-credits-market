@@ -46,8 +46,6 @@ export class HttpClient {
 
     if (body) options.body = body
 
-    console.log('options: ' + this.formatUrl(url) + ' ' + body)
-
     return HttpClient.request(this.formatUrl(url), options)
   }
 

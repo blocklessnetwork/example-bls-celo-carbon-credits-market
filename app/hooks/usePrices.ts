@@ -17,13 +17,15 @@ export const usePrices = (): UsePricesResponse => {
   const [celoPrice, setCeloPrice] = useState(0)
   const [bco2Price, setBCO2Price] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-
+    
   async function updatePrices() {
+    console.log('update prices')
+
     const celoOracleContract = new kit.connection.web3.eth.Contract(CELO_ORACLE_ABI as any, CELO_ORACLE_ADDRES)
-    const tokenContract = new kit.connection.web3.eth.Contract(CO2_ORACLE_ABI as any, CO2_ORACLE_ADDRESS)
+    const oracleContract = new kit.connection.web3.eth.Contract(CO2_ORACLE_ABI as any, CO2_ORACLE_ADDRESS)
 
     setCeloPrice(parseFloat(formatFixed(await celoOracleContract.methods.lastPrice().call(), 6)))
-    setBCO2Price(parseFloat(formatFixed(await tokenContract.methods.latestAnswer().call(), 10)))
+    setBCO2Price(parseFloat(formatFixed(await oracleContract.methods.latestAnswer().call(), 10)))
     setIsLoading(false)
   }
 
@@ -35,6 +37,20 @@ export const usePrices = (): UsePricesResponse => {
       setCeloPrice(0)
       setBCO2Price(0)
       setIsLoading(false)
+    }
+  }, [address])
+
+  useEffect(() => {
+    if (address) {
+      const oracleContract = new kit.connection.web3.eth.Contract(CO2_ORACLE_ABI as any, CO2_ORACLE_ADDRESS)
+      oracleContract.events.NewBlsOraclePrice({}).on('data', () => {
+        console.log('Event: New Oracle Price')
+        
+        if (!isLoading) {
+          setIsLoading(true)
+          updatePrices()
+        }
+      })
     }
   }, [address])
 

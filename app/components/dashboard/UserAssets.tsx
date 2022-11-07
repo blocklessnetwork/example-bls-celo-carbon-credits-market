@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 import { useBalances } from "../../hooks/useBalances"
-import { Button, Skeleton } from "@chakra-ui/react"
+import { Skeleton } from "@chakra-ui/react"
 import { usePrices } from "../../hooks/usePrices"
 import { formatNumber, formatNumberWithCurrency } from "../../utils/number"
 import FaucetButton from "../common/FaucetButton"
