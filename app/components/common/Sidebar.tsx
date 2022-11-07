@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/react"
 import styled from "styled-components"
-import { RiWallet2Line, RiRecycleLine } from "react-icons/ri";
+import { RiWallet2Line, RiRecycleLine, RiGitBranchLine, RiGithubLine } from "react-icons/ri";
 import { useRouter } from 'next/router'
 import Link from "next/link"
 
@@ -32,6 +32,12 @@ export default function Sidebar() {
           />
         </Link>
       </SidebarNavigation>
+
+      <SidebarSocial>
+        <a href="https://github.com/blocklessnetwork/example-bls-celo-carbon-credits-market" target="_blank" rel="noopener noreferrer">
+          <RiGithubLine/>
+        </a>
+      </SidebarSocial>
     </SidebarWrap>
   )
 }
@@ -67,5 +73,12 @@ const SidebarNavigation = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+`
+
+const SidebarSocial = styled.div`
+  svg {
+    width: 2rem;
+    height: 2rem;
   }
 `
