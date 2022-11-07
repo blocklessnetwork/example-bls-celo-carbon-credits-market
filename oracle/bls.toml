@@ -7,7 +7,8 @@ permissions = [
   "https://apn1-wanted-gnat-34029.upstash.io",
   "https://alfajores-forno.celo-testnet.org",
   "https://carbon-credits-aggregator-1.txlabs.workers.dev",
-  "https://carbon-credits-aggregator-2.txlabs.workers.dev"
+  "https://carbon-credits-aggregator-2.txlabs.workers.dev",
+  "https://api.defender.openzeppelin.com"
 ]
 
 [build]

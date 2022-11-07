@@ -20,6 +20,8 @@ const runAggregate = (): void => {
     'CALIFORNIA'
   )
   ccExchangeSource2.aggregateTwapData()
+
+  process.stdout.write('success')
 }
 
 export default runAggregate

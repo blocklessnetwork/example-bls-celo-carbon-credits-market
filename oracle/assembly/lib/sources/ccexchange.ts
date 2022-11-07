@@ -9,9 +9,11 @@ export class CarbonCreditExchangeSource extends BaseSource {
   private redisClient: RedisStorage
 
   /**
+   * Construct the exchange source class
    * 
-   * @param source 
-   * @param market 
+   * @param id unique identifier of the exchange source
+   * @param source json api source
+   * @param market target object to parse from the returning json
    */
   constructor(id: string, source: string, market: string) {
     super(id, 'Carbon Credits ' + market + ' / USD | CarbonCreditExchange')
@@ -28,16 +30,29 @@ export class CarbonCreditExchangeSource extends BaseSource {
   }
 
   /**
-   * Fetches the mean price
+   * Fetches the mean price from twap data storage
    * 
-   * @returns 
+   * @returns the mean price of the exchange
    */
   fetchPrice(): f64 {
     let value: f64 = 0.0
 
+    const storageClient = new RedisStorage()
+    const sourceData = storageClient.get(this.id + '_twap')
+    const sourceJson = <json.JSON.Obj>json.JSON.parse(sourceData)
+
+    if (sourceJson.has('priceMean') && sourceJson.getFloat('priceMean')!._num > 0) {
+      value = sourceJson.getFloat('priceMean')!._num
+    }
+
     return <f64>value
   }
 
+  /**
+   * Fetches the spot price from the remote source
+   * 
+   * @returns spot price and timestamp 
+   */
   fetchSpotPrice(): SpotPriceData {
     let spotPriceData = new SpotPriceData()
 
@@ -59,6 +74,11 @@ export class CarbonCreditExchangeSource extends BaseSource {
     return spotPriceData
   }
 
+  /**
+   * Fetch twap data from the database
+   * 
+   * @returns twap data object
+   */
   fetchTwapData(): TwapData {
     let twapData = new TwapData()
 
@@ -68,12 +88,19 @@ export class CarbonCreditExchangeSource extends BaseSource {
     return twapData
   }
 
+  /**
+   * Saves twap data to the database
+   * 
+   * @param twapData twap data object
+   * @returns success state for the data storage
+   */
   saveTwapData(twapData: TwapData): boolean {
     this.redisClient.set(this.id + '_twap', twapData.toString())
     return true
   }
 
   /**
+   * Execute a twap calculation on all recorded spot price data
    * 
    * @returns 
    */
@@ -105,7 +132,7 @@ export class CarbonCreditExchangeSource extends BaseSource {
     const priceAverage = (priceCumulative / <f64>tsElapsed) || 0
 
     // Save New TWAP Data
-    twapData.priceMean = priceAverage
+    twapData.priceMean = priceAverage || spotPrice.priceLast
     this.saveTwapData(twapData)
   }
 }
