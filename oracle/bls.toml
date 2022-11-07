@@ -1,0 +1,21 @@
+name = "celo_bls_cc_oracle"
+version = "1.0.0"
+
+[deployment]
+nodes = 1
+permissions = [
+  "https://apn1-wanted-gnat-34029.upstash.io",
+  "https://alfajores-forno.celo-testnet.org",
+  "https://carbon-credits-aggregator-1.txlabs.workers.dev",
+  "https://carbon-credits-aggregator-2.txlabs.workers.dev"
+]
+
+[build]
+dir = "build"
+entry = "celo_bls_cc_oracle-debug.wasm"
+command = "yarn build:debug"
+
+[build_release]
+dir = "build"
+entry = "celo_bls_cc_oracle-release.wasm"
+command = "yarn build:release"

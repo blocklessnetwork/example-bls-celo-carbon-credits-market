@@ -1,0 +1,46 @@
+:root {
+    // -- Color Pallet
+    // -- Black
+    --bls--black: #000;
+    --bls--black-01: #000;
+    --bls--black-02: #000;
+
+    // -- White
+    --bls--white: #fff;
+    --bls--white-01: #fff;
+
+    // -- Dark Green
+    --bls--dark-green-01: #333;
+
+    // -- Grey
+    --bls--grey-01: #E6EDED;
+    --bls--grey-02: #e2e6ff;
+    --bls--grey-03: #bdc2de;
+    --bls--grey-05: #a8acad;
+    --bls--grey-06: #5f6469;
+    --bls--grey-07: #737373;
+    --bls--grey-08: #98acac;
+
+    // Colors
+    --bls--primary-color: var(--bls--green-01);
+    --bls--tertiary-color: var(--bls--grey-02);
+
+    --bls--link-color: var(--bls--primary-color);
+    --bls--fg-color: var(--bls--dark-green-01);
+    --bls--bg-color: var(--bls--white);
+    --bls--bg-alt-color: var(--bls--black-01);
+    --bls--fg-alt-color: var(--bls--white-01);
+
+    --bls--fg-light-grey: var(--bls--grey-01);
+    --bls--fg-grey: var(--bls--grey-07);
+
+    --bls--text-black: var(--bls--dark-green-01);
+    --bls--text-grey: #a8a8a8;
+    --bls--text-muted: var(--bls--grey-08);
+
+    // Fonts
+    --bls-font-sans-serif: 'Inter', sans-serif;
+
+    --chakra-fonts-body: 'Inter', sans-serif;
+    --chakra-colors-chakra-body-text: var(--bls--dark-green-01) !important;
+}

@@ -1,0 +1,76 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    opacity: 0;
+    transition: opacity 0.3s !important;
+
+    &.chakra-ui-light {
+        opacity: 1;
+    }
+}
+
+.chakra-modal__content {
+    border-radius: 8px;
+    
+    .chakra-modal__header {
+        background-color: #F6FAFA;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .chakra-modal__footer {
+        border-top: 1px solid #E6EDED;
+
+        button {
+            margin-left: 1rem;
+        }
+    }
+    
+    .chakra-modal__body {
+        padding-top: var(--chakra-space-4);
+        padding-bottom: var(--chakra-space-4);
+        padding-left: var(--chakra-space-5);
+        padding-right: var(--chakra-space-5);
+    }
+}
+
+
+.chakra-table {
+    tbody {
+        td {
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.4;
+            font-variant-numeric: normal;
+
+            small {
+                font-size: 0.875rem;
+                font-weight: 300;
+                line-height: 1.2;
+                color: #98ACAC;
+            }
+        }
+    }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+}
