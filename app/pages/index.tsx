@@ -28,33 +28,37 @@ export default function Dashboard() {
             <UserAssets/>
           </DashboardApp>
 
-          <DashboardFooter>
-            <div>
-              <span>Price Oracle by</span>
-              <img src="/images/blockless-logo.svg" alt="Blockless" />
-            </div>
+          {
+            !!(prices.bCO2) && (
+              <DashboardFooter>
+                <div>
+                  <span>Price Oracle by</span>
+                  <img src="/images/blockless-logo.svg" alt="Blockless" />
+                </div>
 
-            <div>
-              <span>Latest Price</span>
-              <strong>{formatNumberWithCurrency(prices.bCO2)}</strong>
-            </div>
+                <div>
+                  <span>Last Price</span>
+                  <strong>{formatNumberWithCurrency(prices.bCO2)}</strong>
+                </div>
 
-            <div>
-              <span>Last Update</span>
-              <strong>{formatEpochToPrettyDateTime(lastUpdated)}</strong>
-            </div>
+                <div>
+                  <span>Last Updated</span>
+                  <strong>{formatEpochToPrettyDateTime(lastUpdated)}</strong>
+                </div>
 
-            <div>
-              <span>Celo Contract</span>
-              <div>
-                <a href="http://celo.org" target="_blank" rel="noopener noreferrer">
-                  {formatAddress(CO2_ORACLE_ADDRESS)}
-                </a>
-                &nbsp;
-                <RiExternalLinkLine />
-              </div>
-            </div>
-          </DashboardFooter>
+                <div>
+                  <span>Celo Contract</span>
+                  <div>
+                    <a href="https://explorer.celo.org/alfajores/address/0xc44831f5f424A95465720bda94110AB0140Afc93/contracts" target="_blank" rel="noopener noreferrer">
+                      {formatAddress(CO2_ORACLE_ADDRESS)}
+                    </a>
+                    &nbsp;
+                    <RiExternalLinkLine />
+                  </div>
+                </div>
+              </DashboardFooter>
+            )
+          }
         </Container>
       </DashboardInner>
     </BaseLayout>
