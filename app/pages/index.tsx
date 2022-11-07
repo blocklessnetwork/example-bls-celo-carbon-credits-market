@@ -1,10 +1,17 @@
 import { Container } from '@chakra-ui/react'
+import { RiExternalLinkLine } from 'react-icons/ri'
 import styled from 'styled-components'
 import UserAccounts from '../components/dashboard/UserAccounts'
 import UserAssets from '../components/dashboard/UserAssets'
 import BaseLayout from '../components/layouts/BaseLayout'
+import { CO2_ORACLE_ADDRESS } from '../constants/tokens'
+import { usePrices } from '../hooks/usePrices'
+import { formatEpochToPrettyDateTime } from '../utils/date'
+import { formatNumberWithCurrency } from '../utils/number'
+import { formatAddress } from '../utils/strings'
 
 export default function Dashboard() {
+  const { prices, lastUpdated } = usePrices()
   return (
     <BaseLayout>
       <DashboardInner>
@@ -20,6 +27,34 @@ export default function Dashboard() {
             <UserAccounts/>
             <UserAssets/>
           </DashboardApp>
+
+          <DashboardFooter>
+            <div>
+              <span>Price Oracle by</span>
+              <img src="/images/blockless-logo.svg" alt="Blockless" />
+            </div>
+
+            <div>
+              <span>Latest Price</span>
+              <strong>{formatNumberWithCurrency(prices.bCO2)}</strong>
+            </div>
+
+            <div>
+              <span>Last Update</span>
+              <strong>{formatEpochToPrettyDateTime(lastUpdated)}</strong>
+            </div>
+
+            <div>
+              <span>Celo Contract</span>
+              <div>
+                <a href="http://celo.org" target="_blank" rel="noopener noreferrer">
+                  {formatAddress(CO2_ORACLE_ADDRESS)}
+                </a>
+                &nbsp;
+                <RiExternalLinkLine />
+              </div>
+            </div>
+          </DashboardFooter>
         </Container>
       </DashboardInner>
     </BaseLayout>
@@ -88,17 +123,37 @@ export const DashboardApp = styled.div`
 `
 
 export const DashboardFooter = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
+
+  background-color: #fafafa;
+  border-radius: 8px;
+
+  padding: 1rem;
 
   span {
     font-size: 0.875rem;
     color: #8c8c8c;
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    font-size: 1.125rem;
   }
 
   img {
     height: 1.5rem;
-    margin-left: 1rem;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    > div {
+      display: flex;
+    }
   }
 `

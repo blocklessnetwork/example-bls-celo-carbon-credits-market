@@ -7,7 +7,8 @@ interface UsePricesResponse {
   prices: {
     celo: number
     bCO2: number
-  },
+  }
+  lastUpdated: number
   isLoading: boolean
   error: any
 }
@@ -17,6 +18,7 @@ export const usePrices = (): UsePricesResponse => {
   const [celoPrice, setCeloPrice] = useState(0)
   const [bco2Price, setBCO2Price] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [lastUpdated, setLastUpdated] = useState(0)
     
   async function updatePrices() {
     console.log('update prices')
@@ -26,6 +28,7 @@ export const usePrices = (): UsePricesResponse => {
 
     setCeloPrice(parseFloat(formatFixed(await celoOracleContract.methods.lastPrice().call(), 6)))
     setBCO2Price(parseFloat(formatFixed(await oracleContract.methods.latestAnswer().call(), 10)))
+    setLastUpdated(await oracleContract.methods.latestTimestamp().call())
     setIsLoading(false)
   }
 
@@ -59,6 +62,7 @@ export const usePrices = (): UsePricesResponse => {
       celo: celoPrice,
       bCO2: bco2Price
     },
+    lastUpdated,
     isLoading,
     error: null
   }

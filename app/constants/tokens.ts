@@ -1,4 +1,4 @@
-export const CO2_TOKEN_ADDRESS = '0x2894629801C94299F8Cfd5fA8b2f10bAE52578b7'
+export const CO2_TOKEN_ADDRESS = '0x492000bf429823383858979158D11E73cfc120a5'
 export const CO2_TOKEN_ABI = [
   // balanceOf
   {
@@ -36,7 +36,7 @@ export const CELO_ORACLE_ABI = [
   },
 ]
 
-export const CO2_ORACLE_ADDRESS = '0xFb560ca3E066Cb08CB82BCe2845487D342828A89'
+export const CO2_ORACLE_ADDRESS = '0xc44831f5f424A95465720bda94110AB0140Afc93'
 export const CO2_ORACLE_ABI = [
   {
     "inputs": [
@@ -253,7 +253,7 @@ export const CO2_ORACLE_ABI = [
   }
 ]
 
-export const FAUCET_ADDRESS = '0x9D82b21CF7ABC054efe736f83E4f91224B0D4214'
+export const FAUCET_ADDRESS = '0xDaa57473B2bFB9518ecA26EaD5031551cB348890'
 export const FAUCET_ABI = [
   {
     "inputs": [
