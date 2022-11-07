@@ -7,7 +7,7 @@ interface UseBalancesResponse {
   balances: {
     celo: number
     bCO2: number
-  },
+  }
   isLoading: boolean
   error: any
 }
@@ -38,6 +38,18 @@ export const useBalances = (): UseBalancesResponse => {
       setIsLoading(false)
     }
   }, [address])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (address) {
+        updateBalance()
+      } else {
+        clearInterval(interval)
+      }
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
+
 
   return {
     balances: {

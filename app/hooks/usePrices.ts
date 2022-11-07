@@ -17,12 +17,10 @@ export const usePrices = (): UsePricesResponse => {
   const { address, kit } = useCelo()
   const [celoPrice, setCeloPrice] = useState(0)
   const [bco2Price, setBCO2Price] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
     
   async function updatePrices() {
-    console.log('update prices')
-
     const celoOracleContract = new kit.connection.web3.eth.Contract(CELO_ORACLE_ABI as any, CELO_ORACLE_ADDRES)
     const oracleContract = new kit.connection.web3.eth.Contract(CO2_ORACLE_ABI as any, CO2_ORACLE_ADDRESS)
 

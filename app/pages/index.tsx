@@ -12,6 +12,7 @@ import { formatAddress } from '../utils/strings'
 
 export default function Dashboard() {
   const { prices, lastUpdated } = usePrices()
+  
   return (
     <BaseLayout>
       <DashboardInner>
