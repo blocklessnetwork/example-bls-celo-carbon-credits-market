@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./interfaces/BlsOracleInterface.sol";
 
-contract CCOOracle is BlsOracleInterface {
+contract BlocklessTCO2eOracle is BlsOracleInterface {
     string private _id;
     string private _description;
     uint8 private _decimals;
