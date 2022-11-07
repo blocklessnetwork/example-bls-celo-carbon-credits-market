@@ -25,7 +25,7 @@ export const usePrices = (): UsePricesResponse => {
     const oracleContract = new kit.connection.web3.eth.Contract(CO2_ORACLE_ABI as any, CO2_ORACLE_ADDRESS)
 
     setCeloPrice(parseFloat(formatFixed(await celoOracleContract.methods.lastPrice().call(), 6)))
-    setBCO2Price(parseFloat(formatFixed(await oracleContract.methods.latestAnswer().call(), 10)))
+    setBCO2Price(parseFloat(formatFixed(await oracleContract.methods.latestAnswer().call(), 8)))
     setLastUpdated(await oracleContract.methods.latestTimestamp().call())
     setIsLoading(false)
   }

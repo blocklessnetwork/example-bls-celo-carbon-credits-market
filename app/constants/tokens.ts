@@ -253,7 +253,7 @@ export const CO2_ORACLE_ABI = [
   }
 ]
 
-export const FAUCET_ADDRESS = '0xDaa57473B2bFB9518ecA26EaD5031551cB348890'
+export const FAUCET_ADDRESS = '0x928d07E808F7a039A79f1356011B8cbDF1246eA9'
 export const FAUCET_ABI = [
   {
     "inputs": [
